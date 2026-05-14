@@ -1,0 +1,100 @@
+@model Travel_Trip_Project.Models.Classes.Destination
+@{
+    ViewBag.Title = "Rotayı Güncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+    .form-modern .form-control, .form-modern .form-select {
+        border-radius: 12px;
+        border: 2px solid #e2e8f0;
+        padding: 12px 15px;
+        font-weight: 500;
+        color: #334155;
+        transition: all 0.2s;
+    }
+    .form-modern .form-control:focus, .form-modern .form-select:focus {
+        border-color: #1A2B4C;
+        box-shadow: none;
+        background: #fff;
+    }
+    .form-modern label {
+        font-weight: 700;
+        color: #1A2B4C;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+    }
+    .form-check-input:checked {
+        background-color: #1A2B4C;
+        border-color: #1A2B4C;
+    }
+</style>
+
+<div class="mb-4">
+    <a href="/Admin/DestinationList" class="text-muted text-decoration-none fw-bold"><i class="fas fa-arrow-left me-2"></i> Rota Listesine Dön</a>
+    <h4 class="fw-bold mt-2" style="color: #1A2B4C;">Rotayı Düzenle: <span style="opacity: 0.6;">@Model.Place</span></h4>
+</div>
+
+<div class="glass-card p-4 p-md-5">
+    <form class="form-modern" method="post" action="/Admin/UpdateDestination">
+        @Html.HiddenFor(x => x.Id)
+        
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <label>Lokasyon Adı (Place)</label>
+                @Html.TextBoxFor(x => x.Place, new { @class = "form-control", @required="required" })
+            </div>
+            <div class="col-md-6 mb-4">
+                <label>Bağlı Olduğu Ülke</label>
+                @Html.DropDownListFor(x => x.CountryId, (List<SelectListItem>)ViewBag.Countries, new { @class = "form-select", @required="required" })
+            </div>
+            <div class="col-md-6 mb-4">
+                <label>Görsel URL</label>
+                <div class="d-flex align-items-center gap-3">
+                    <img src="@Model.PlaceImage" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;" onerror="this.style.display='none'" />
+                    @Html.TextBoxFor(x => x.PlaceImage, new { @class = "form-control", @required="required" })
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <label>Kafe / Mekan Önerisi</label>
+                @Html.TextBoxFor(x => x.Cafe, new { @class = "form-control" })
+            </div>
+            
+            <div class="col-12 mb-4">
+                <label>Açıklama (Description)</label>
+                @Html.TextAreaFor(x => x.Description, 5, 10, new { @class = "form-control", @required="required" })
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="form-check form-switch mt-2">
+                    <input class="form-check-input" type="checkbox" name="IsTop10" value="true" id="isTop10" @(Model.IsTop10 ? "checked" : "")>
+                    <label class="form-check-label ms-2" for="isTop10" style="margin-bottom: 0;">Top 10 Listesinde Göster</label>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="form-check form-switch mt-2">
+                    <input class="form-check-input" type="checkbox" name="IsBestPlace" value="true" id="isBestPlace" @(Model.IsBestPlace ? "checked" : "")>
+                    <label class="form-check-label ms-2" for="isBestPlace" style="margin-bottom: 0;">En İyi Yerler Listesinde Göster</label>
+                </div>
+            </div>
+            
+            <!-- MVC Checkbox false value trick -->
+            <input type="hidden" name="IsTop10" value="false" />
+            <input type="hidden" name="IsBestPlace" value="false" />
+
+            <div class="col-12 text-end mt-2">
+                <button type="submit" class="btn btn-success" style="border-radius: 12px; padding: 12px 30px; font-weight: 600; font-size: 1.05rem;">
+                    <i class="fas fa-save me-2"></i> Değişiklikleri Kaydet
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

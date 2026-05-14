@@ -1,0 +1,43 @@
+﻿@using Travel_Trip_Project.Models.Classes
+@model List<About>
+@{
+    ViewBag.Title = "AboutPage";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<!-- Breadcrumbs-->
+
+<section class="breadcrumbs-custom" style="background: url('/site/myImage/travelwallpaper.jpg'); background-size: cover;">
+    <div class="container">
+        <p class="heading-1 breadcrumbs-custom-title" style="color:white">Hakkımızda</p>
+        <ul class="breadcrumbs-custom-path">
+        </ul>
+    </div>
+</section>
+
+
+<!-- hi, we are brave-->
+
+<section class="section section-lg bg-default">
+    <div class="container container-bigger">
+        @foreach (var x in Model)
+        {
+            <div class="row row-50 justify-content-md-center align-items-lg-center justify-content-xl-between">
+                <div class="col-md-10 col-lg-6 text-center">
+
+                    <img src=@x.PhotoUrl alt="" class="img-fluid" style="border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);" />
+                </div>
+
+
+                <div class="col-md-10 col-lg-6 col-xl-5">
+                    <h3 class="heading-3" style="margin-bottom: 20px;">@x.Title</h3>
+                    <p class="text-gray-500" style="line-height: 1.8;">@x.Description</p>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+
+

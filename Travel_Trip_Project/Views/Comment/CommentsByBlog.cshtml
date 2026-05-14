@@ -1,0 +1,109 @@
+@using Travel_Trip_Project.Models.Classes
+@model List<Comments>
+@{
+    var blog = ViewBag.Blog as Blog;
+    ViewBag.Title = blog != null ? blog.Title + " - Yorumlar" : "Blog Yorumları";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .glass-card {
+        background: rgba(255,255,255,0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255,255,255,0.8);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+    .table-modern { vertical-align: middle; }
+    .table-modern thead th {
+        background: #f8fafc; color: #64748b;
+        font-weight: 700; text-transform: uppercase;
+        font-size: 0.8rem; letter-spacing: 1px;
+        border-bottom: 2px solid #e2e8f0; padding: 15px;
+    }
+    .table-modern tbody td {
+        padding: 15px; border-bottom: 1px solid #f1f5f9;
+        color: #334155; font-weight: 500;
+    }
+    .avatar-circle {
+        width: 40px; height: 40px;
+        background: linear-gradient(135deg, #1A2B4C, #2196F3);
+        color: white; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1rem; font-weight: bold; flex-shrink: 0;
+    }
+    .blog-banner {
+        background: linear-gradient(135deg, #1A2B4C 0%, #2563eb 100%);
+        border-radius: 16px; color: white; padding: 25px 30px;
+    }
+</style>
+
+<div class="mb-4">
+    <a href="/Comment/CommentList" class="text-muted text-decoration-none fw-bold"><i class="fas fa-arrow-left me-2"></i> Tüm Yorumlara Dön</a>
+</div>
+
+@if(blog != null)
+{
+    <div class="blog-banner mb-4 shadow-sm">
+        <div class="d-flex align-items-center gap-3">
+            <i class="fas fa-pen-nib fs-3" style="opacity:0.7;"></i>
+            <div>
+                <div style="font-size:0.8rem; opacity:0.7; text-transform:uppercase; letter-spacing:1px;">Blog Yazısı</div>
+                <h5 class="fw-bold mb-0">@blog.Title</h5>
+            </div>
+            <span class="badge bg-white text-dark ms-auto px-3 py-2" style="border-radius:8px; font-size:0.9rem;">@(Model != null ? Model.Count() : 0) Yorum</span>
+        </div>
+    </div>
+}
+
+<div class="glass-card p-4">
+    <div class="table-responsive">
+        <table class="table table-borderless table-modern mb-0">
+            <thead>
+                <tr>
+                    <th>Yorumcu</th>
+                    <th>Yorum</th>
+                    <th class="text-end">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(Model != null && Model.Any())
+                {
+                    foreach(var item in Model)
+                    {
+                        var fl = !string.IsNullOrEmpty(item.UserName) ? item.UserName.Substring(0,1).ToUpper() : "?";
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="avatar-circle shadow-sm">@fl</div>
+                                    <div>
+                                        <div class="fw-bold text-dark">@item.UserName</div>
+                                        <div class="text-muted" style="font-size:0.82rem;"><i class="fas fa-at me-1"></i>@item.Mail</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-muted" style="max-width:350px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                                    @(item.Comment != null && item.Comment.Length > 55 ? item.Comment.Substring(0,55) + "..." : item.Comment)
+                                </div>
+                            </td>
+                            <td class="text-end">
+                                <a href="/Comment/CommentDetails/@item.Id" class="btn btn-sm btn-primary text-white me-2" style="border-radius:8px; padding:8px 14px;"><i class="fas fa-eye"></i> Oku</a>
+                                <a href="/Comment/DeleteComment/@item.Id" class="btn btn-sm btn-danger" style="border-radius:8px; padding:8px 14px;" onclick="return confirm('Bu yorumu silmek istediğinize emin misiniz?');"><i class="fas fa-trash-alt"></i> Sil</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3" class="text-center py-5 text-muted">
+                            <i class="fas fa-comment-slash mb-3" style="font-size:3rem; opacity:0.2;"></i>
+                            <h5>Bu blog yazısına henüz yorum yapılmamış</h5>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

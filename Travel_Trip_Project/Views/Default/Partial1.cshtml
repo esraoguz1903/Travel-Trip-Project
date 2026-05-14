@@ -1,0 +1,48 @@
+@using Travel_Trip_Project.Models.Classes
+@model List<Destination>
+<section class="section section-lg bg-default">
+    <div class="container container-wide">
+        <div class="row row-50">
+
+            <!-- SOL TARAF: This Week's Top 10 (Sadece Kafeler Gelecek) -->
+            <div class="col-lg-4">
+                <h3 style="color: #1A2B4C; margin-bottom: 30px; font-weight: bold;">En İyİ 10 Mekan</h3>
+                <ol style="padding-left: 20px; line-height: 2.5; font-size: 1.1rem; color: #555;">
+                    
+                    @{ int i = 0; }
+
+                    @foreach (var x in Model.OrderByDescending(x => x.IsTop10).Take(10).ToList())
+                    {
+
+                        <li style="border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; margin-bottom: 10px;">
+                            <a href="#" style="color: #555; text-decoration: none; transition: 0.3s;" onmouseover="this.style.color='#1A2B4C'" onmouseout="this.style.color='#555'">
+                                <span>@{i++; } @i. </span> @x.Cafe
+                            </a>
+                        </li>
+                        
+                    }
+
+                </ol>
+            </div>
+             
+            <div class="col-lg-8">
+                <h3 style="color: #1A2B4C; margin-bottom: 30px; font-weight: bold;">EN İYİ YERLER</h3>
+                <div class="row row-30">
+                    @foreach (var x in Model.OrderByDescending(x => x.IsBestPlace).Take(6).ToList())
+                    {
+                        <div class="col-md-6 mb-4">
+                            <div style="display: flex; gap: 15px; align-items: flex-start;">
+                                <img src=@x.PlaceImage alt="" style="width: 140px; height: 100px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+                                <div>
+                                    <h6 style="color: #1A2B4C; font-weight: bold; margin-bottom: 8px;">@x.Place</h6>
+                                    <p style="font-size: 0.9rem; color: #777; margin: 0; line-height: 1.5;">@x.Description</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>

@@ -1,0 +1,95 @@
+@model Travel_Trip_Project.Models.Classes.Destination
+@{
+    ViewBag.Title = "Yeni Rota Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+    .form-modern .form-control, .form-modern .form-select {
+        border-radius: 12px;
+        border: 2px solid #e2e8f0;
+        padding: 12px 15px;
+        font-weight: 500;
+        color: #334155;
+        transition: all 0.2s;
+    }
+    .form-modern .form-control:focus, .form-modern .form-select:focus {
+        border-color: #1A2B4C;
+        box-shadow: none;
+        background: #fff;
+    }
+    .form-modern label {
+        font-weight: 700;
+        color: #1A2B4C;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+    }
+    .form-check-input:checked {
+        background-color: #1A2B4C;
+        border-color: #1A2B4C;
+    }
+</style>
+
+<div class="mb-4">
+    <a href="/Admin/DestinationList" class="text-muted text-decoration-none fw-bold"><i class="fas fa-arrow-left me-2"></i> Rota Listesine Dön</a>
+    <h4 class="fw-bold mt-2" style="color: #1A2B4C;">Yeni Rota / Destinasyon Ekle</h4>
+</div>
+
+<div class="glass-card p-4 p-md-5">
+    <form class="form-modern" method="post" action="/Admin/AddDestination">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <label>Lokasyon Adı (Place)</label>
+                <input type="text" class="form-control" name="Place" placeholder="Örn: Eyfel Kulesi" required />
+            </div>
+            <div class="col-md-6 mb-4">
+                <label>Bağlı Olduğu Ülke</label>
+                @Html.DropDownList("CountryId", (List<SelectListItem>)ViewBag.Countries, "Ülke Seçiniz", new { @class = "form-select", @required="required" })
+            </div>
+            <div class="col-md-6 mb-4">
+                <label>Görsel URL</label>
+                <input type="text" class="form-control" name="PlaceImage" placeholder="https://..." required />
+            </div>
+            <div class="col-md-6 mb-4">
+                <label>Kafe / Mekan Önerisi</label>
+                <input type="text" class="form-control" name="Cafe" placeholder="Örn: Cafe de Flore" />
+            </div>
+            
+            <div class="col-12 mb-4">
+                <label>Açıklama (Description)</label>
+                <textarea class="form-control" name="Description" rows="5" placeholder="Bu rota hakkında bilgiler..." required></textarea>
+            </div>
+            
+            <div class="col-md-6 mb-4">
+                <div class="form-check form-switch mt-2">
+                    <input class="form-check-input" type="checkbox" name="IsTop10" value="true" id="isTop10">
+                    <label class="form-check-label ms-2" for="isTop10" style="margin-bottom: 0;">Top 10 Listesinde Göster</label>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="form-check form-switch mt-2">
+                    <input class="form-check-input" type="checkbox" name="IsBestPlace" value="true" id="isBestPlace">
+                    <label class="form-check-label ms-2" for="isBestPlace" style="margin-bottom: 0;">En İyi Yerler Listesinde Göster</label>
+                </div>
+            </div>
+            
+            <!-- MVC Checkbox false value trick -->
+            <input type="hidden" name="IsTop10" value="false" />
+            <input type="hidden" name="IsBestPlace" value="false" />
+
+            <div class="col-12 text-end mt-2">
+                <button type="submit" class="btn btn-primary" style="background: #1A2B4C; border: none; border-radius: 12px; padding: 12px 30px; font-weight: 600; font-size: 1.05rem;">
+                    <i class="fas fa-plus-circle me-2"></i> Rotayı Kaydet
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

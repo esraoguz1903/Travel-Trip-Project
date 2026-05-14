@@ -1,0 +1,97 @@
+@model Travel_Trip_Project.Models.Classes.Contact
+@{
+    ViewBag.Title = "Mesaj Detayı";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+    .info-label {
+        font-weight: 700;
+        color: #64748b;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+    }
+    .info-value {
+        font-size: 1.1rem;
+        color: #1A2B4C;
+        font-weight: 600;
+        background: #f8fafc;
+        padding: 15px 20px;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+    }
+    .message-body {
+        background: #fff;
+        padding: 25px;
+        border-radius: 15px;
+        border: 1px solid #e2e8f0;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: #334155;
+        min-height: 200px;
+    }
+    .avatar-large {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #1A2B4C, #2196F3);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+    }
+</style>
+
+<div class="mb-4">
+    <a href="/Admin/ContactList" class="text-muted text-decoration-none fw-bold"><i class="fas fa-arrow-left me-2"></i> Gelen Kutusuna Dön</a>
+</div>
+
+<div class="glass-card p-4 p-md-5">
+    <div class="d-flex align-items-center mb-5 pb-4" style="border-bottom: 2px dashed #e2e8f0;">
+        @{
+            var firstLetter = !string.IsNullOrEmpty(Model.FullName) ? Model.FullName.Substring(0, 1).ToUpper() : "?";
+        }
+        <div class="avatar-large shadow-sm me-4">@firstLetter</div>
+        <div>
+            <h3 class="fw-bold mb-1" style="color: #1A2B4C;">@Model.FullName</h3>
+            <div class="text-muted"><i class="fas fa-envelope me-2"></i>@Model.Mail</div>
+        </div>
+        
+        <div class="ms-auto text-end">
+            <a href="/Admin/DeleteContact/@Model.Id" class="btn btn-outline-danger" style="border-radius: 10px; padding: 10px 20px; font-weight: 600;" onclick="return confirm('Bu mesajı okudunuz ve silmek mi istiyorsunuz?');">
+                <i class="fas fa-trash-alt me-2"></i> Mesajı Sil
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 mb-4">
+            <div class="info-label">Mesaj Konusu (Topic)</div>
+            <div class="info-value"><i class="fas fa-tag me-2 text-primary"></i> @Model.Topic</div>
+        </div>
+        
+        <div class="col-12 mb-4">
+            <div class="info-label">Mesaj İçeriği</div>
+            <div class="message-body shadow-sm">
+                @Model.Message
+            </div>
+        </div>
+        
+        <div class="col-12 mt-4 text-center">
+            <a href="mailto:@Model.Mail" class="btn btn-primary shadow" style="background: #1A2B4C; border: none; border-radius: 12px; padding: 15px 40px; font-weight: 600; font-size: 1.1rem;">
+                <i class="fas fa-reply me-2"></i> Yanıtla (E-Posta)
+            </a>
+        </div>
+    </div>
+</div>

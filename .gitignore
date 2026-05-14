@@ -1,0 +1,212 @@
+
+# ==============================================
+#   Travel Trip Project — .gitignore
+#   ASP.NET MVC 5 + Entity Framework + Visual Studio
+# ==============================================
+
+# -----------------------------------------------
+# Visual Studio geçici dosyalar
+# -----------------------------------------------
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.ide/
+
+# -----------------------------------------------
+# Derleme çıktıları (Build Output)
+# -----------------------------------------------
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# -----------------------------------------------
+# NuGet paketleri
+# -----------------------------------------------
+packages/
+*.nupkg
+*.snupkg
+.nuget/
+# NuGet v3+ paket geri yükleme aktifse packages/ klasörünü hariç tut
+!packages/build/
+
+# -----------------------------------------------
+# Entity Framework Migrations (sadece veritabanı dosyaları)
+# -----------------------------------------------
+*.mdf
+*.ldf
+*.ndf
+
+# -----------------------------------------------
+# ASP.NET / IIS
+# -----------------------------------------------
+[Pp]ublish/
+PublishProfiles/
+*.pubxml
+*.pubxml.user
+*.publishproj
+ServiceFabricBackup/
+*.rdl.data
+*.bim.layout
+*.bim_*.settings
+*.rptproj.rsuser
+*- [Bb]ackup.rdl
+*- [Bb]ackup ([0-9]).rdl
+*- [Bb]ackup ([0-9][0-9]).rdl
+*.publishsettings
+orleans.codegen.cs
+
+# -----------------------------------------------
+# Web.config dönüşüm dosyaları (hassas veriler içerebilir)
+# -----------------------------------------------
+# Web.Debug.config ve Web.Release.config'i takip etmek istiyorsan
+# aşağıdaki iki satırı yorum satırı yap
+# Web.Debug.config
+# Web.Release.config
+
+# -----------------------------------------------
+# Hassas yapılandırma dosyaları
+# -----------------------------------------------
+# Bağlantı stringi, API anahtarları vb. içerebilecek dosyalar
+# Web.config'i repoya eklemek istiyorsan aşağıdaki satırı kaldır
+# Web.config
+
+# -----------------------------------------------
+# Otomatik oluşturulan Razor görünümleri
+# -----------------------------------------------
+ClientBin/
+~$*
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.pfx
+*.publishsettings
+node_modules/
+orleans.codegen.cs
+
+# -----------------------------------------------
+# Windows işletim sistemi dosyaları
+# -----------------------------------------------
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# -----------------------------------------------
+# IDE / Editör dosyaları
+# -----------------------------------------------
+# Visual Studio Code
+.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# -----------------------------------------------
+# Test sonuçları
+# -----------------------------------------------
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+.ncrunch*
+
+# -----------------------------------------------
+# Profil / Kapsam dosyaları
+# -----------------------------------------------
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# -----------------------------------------------
+# Crystal Reports
+# -----------------------------------------------
+*.rpt
+
+# -----------------------------------------------
+# ReSharper
+# -----------------------------------------------
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# -----------------------------------------------
+# StyleCop
+# -----------------------------------------------
+StyleCopReport.xml
+
+# -----------------------------------------------
+# Docker
+# -----------------------------------------------
+.dockerignore
+docker-compose.override.yml
+
+# -----------------------------------------------
+# Azure
+# -----------------------------------------------
+csx/
+*.build.csdef
+.azure/
+
+# -----------------------------------------------
+# Diğer
+# -----------------------------------------------
+*.pidb
+*.svclog
+*.scc
+_TeamCity*
+.axoCover/
+coverage*.xml
+coverage*.json
+*.coveragexml
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.pch
+*.pdb
+*.ipdb
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.log
+*.tlog
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc

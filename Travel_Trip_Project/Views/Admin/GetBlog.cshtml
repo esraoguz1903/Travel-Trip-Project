@@ -1,0 +1,74 @@
+@model Travel_Trip_Project.Models.Classes.Blog
+@{
+    ViewBag.Title = "Bloğu Güncelle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+    .form-modern .form-control {
+        border-radius: 12px;
+        border: 2px solid #e2e8f0;
+        padding: 12px 15px;
+        font-weight: 500;
+        color: #334155;
+        transition: all 0.2s;
+    }
+    .form-modern .form-control:focus {
+        border-color: #1A2B4C;
+        box-shadow: none;
+        background: #fff;
+    }
+    .form-modern label {
+        font-weight: 700;
+        color: #1A2B4C;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+    }
+</style>
+
+<div class="mb-4">
+    <a href="/Admin/BlogList" class="text-muted text-decoration-none fw-bold"><i class="fas fa-arrow-left me-2"></i> Blog Listesine Dön</a>
+    <h4 class="fw-bold mt-2" style="color: #1A2B4C;">Bloğu Düzenle: <span style="opacity: 0.6;">@Model.Title</span></h4>
+</div>
+
+<div class="glass-card p-4 p-md-5">
+    <form class="form-modern" method="post" action="/Admin/UpdateBlog">
+        @Html.HiddenFor(x => x.Id)
+        
+        <div class="row">
+            <div class="col-md-8 mb-4">
+                <label>Blog Başlığı</label>
+                @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @required = "required" })
+            </div>
+            <div class="col-md-4 mb-4">
+                <label>Tarih</label>
+                <input type="date" class="form-control" name="BlogDate" value="@Model.BlogDate.ToString("yyyy-MM-dd")" required />
+            </div>
+            <div class="col-12 mb-4">
+                <label>Görsel URL</label>
+                <div class="d-flex align-items-center gap-3">
+                    <img src="@Model.BlogImage" style="width: 60px; height: 60px; object-fit: cover; border-radius: 12px;" onerror="this.style.display='none'" />
+                    @Html.TextBoxFor(x => x.BlogImage, new { @class = "form-control", @required = "required" })
+                </div>
+            </div>
+            <div class="col-12 mb-4">
+                <label>İçerik (Description)</label>
+                @Html.TextAreaFor(x => x.Description, 8, 10, new { @class = "form-control", @required = "required" })
+            </div>
+            
+            <div class="col-12 text-end mt-2">
+                <button type="submit" class="btn btn-success" style="border-radius: 12px; padding: 12px 30px; font-weight: 600; font-size: 1.05rem;">
+                    <i class="fas fa-save me-2"></i> Değişiklikleri Kaydet
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

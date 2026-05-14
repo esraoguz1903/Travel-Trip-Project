@@ -1,0 +1,56 @@
+@using Travel_Trip_Project.Models.Classes
+@model List<About>
+@{
+    ViewBag.Title = "Hakkımızda Yönetimi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+    .about-img {
+        width: 100%;
+        max-width: 250px;
+        border-radius: 15px;
+        object-fit: cover;
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold" style="color: #1A2B4C;"><i class="fas fa-info-circle me-2"></i> Hakkımızda Bölümü</h4>
+</div>
+
+@if(Model != null && Model.Any())
+{
+    foreach(var item in Model)
+    {
+        <div class="glass-card p-4 p-md-5 mb-4">
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center mb-4 mb-md-0">
+                    <img src="@item.PhotoUrl" alt="@item.Title" class="about-img shadow-sm" onerror="this.src='https://via.placeholder.com/250x250?text=Gorsel+Yok'"/>
+                </div>
+                <div class="col-md-8">
+                    <h3 class="fw-bold text-dark mb-3">@item.Title</h3>
+                    <p class="text-muted" style="line-height: 1.8;">@item.Description</p>
+                    <div class="text-end mt-4">
+                        <a href="/Admin/GetAbout/@item.Id" class="btn btn-info text-white" style="border-radius: 12px; padding: 10px 25px; font-weight: 600;">
+                            <i class="fas fa-edit me-2"></i> Bilgileri Güncelle
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="glass-card p-5 text-center text-muted">
+        <i class="fas fa-folder-open mb-3" style="font-size: 3rem; opacity: 0.2;"></i>
+        <h5>Henüz Hakkımızda bilgisi eklenmemiş. Lütfen veritabanından bir başlangıç verisi ekleyin.</h5>
+    </div>
+}

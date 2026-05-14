@@ -1,0 +1,80 @@
+@model Travel_Trip_Project.Models.Classes.BlogComment
+@{
+    ViewBag.Title = "BlogList";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<section class="section section-lg bg-default">
+    <div class="container">
+        <div class="row row-50 justify-content-center">
+
+            <!-- Ana İçerik: Blog Listesi -->
+            <div class="col-lg-8">
+                <div class="row row-30">
+                    @foreach (var x in Model.BlogList)
+                    {
+                        <div class="col-md-6">
+                            <article class="post-blog" style="margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); padding-bottom: 15px; border-radius: 8px; overflow: hidden;">
+                                <a class="post-blog-image" href="/Blog/BlogDetails/@x.Id">
+                                    <img src="@x.BlogImage" alt="" class="img-fluid" style="width: 100%; height: 250px; object-fit: cover;" />
+                                </a>
+                                <div class="post-blog-caption" style="padding: 20px;">
+                                    <div class="post-blog-caption-header">
+                                        <ul class="post-blog-tags">
+                                            <li><a class="button-tags" href="#">Seyahat</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="post-blog-caption-body">
+                                        <h5 style="margin-bottom: 10px;"><a class="post-blog-title" href="/Blog/BlogDetails/@x.Id">@x.Title</a></h5>
+                                        <p>@x.Description.Substring(0, 125)...</p>
+                                    </div>
+                                    <div class="post-blog-caption-footer" style="display: flex; justify-content: space-between; align-items: center;">
+                                        <time style="color: #999; font-size: 0.9rem;"><i class="mdi mdi-calendar"></i> @x.BlogDate.ToString("dd.MM.yyyy")</time>
+                                        <a href="/Blog/BlogDetails/@x.Id" style="color: #1A2B4C; font-weight: bold; font-size: 0.9rem;">Devamını Oku <i class="mdi mdi-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Yan Menü (Sidebar) -->
+            <div class="col-lg-4">
+                <div class="aside-blog" style="background-color: #f8f9fa; padding: 30px; border-radius: 8px;">
+
+                    <!-- Son Postlar -->
+                    <div class="aside-item mb-5">
+                        <h5 class="aside-title mb-3" style="border-bottom: 2px solid #1A2B4C; padding-bottom: 10px;">Son Eklenenler</h5>
+                        <ul class="list-unstyled" style="line-height: 2;">
+                            @foreach (var y in Model.BlogList.OrderByDescending(y => y.Id).Take(3).ToList())
+                            {
+                                <li><a href="/Blog/BlogDetails/@y.Id" style="color: #555; text-decoration: none;"><i class="mdi mdi-chevron-right text-primary"></i>@y.Title</a></li>
+                                <br />
+
+                            }
+                        </ul>
+                    </div>
+
+                    <!-- Son Yorumlar -->
+                    <div class="aside-item">
+                        <h5 class="aside-title mb-3" style="border-bottom: 2px solid #1A2B4C; padding-bottom: 10px;">Son Yorumlar</h5>
+                        <ul class="list-unstyled" style="line-height: 2;">
+                            @foreach (var x in Model.CommentList.OrderByDescending(x => x.Id).Take(3).ToList())
+                            {
+                                <li style="margin-bottom: 10px;">
+                                    <span style="font-weight: bold; color: #333;">@x.UserName</span> <br>
+                                    <a href="#" style="color: #777; font-size: 0.9rem; text-decoration: none;">@x.Comment</a>
+                                </li>
+
+                            }
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+

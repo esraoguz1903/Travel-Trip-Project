@@ -1,0 +1,142 @@
+@model Travel_Trip_Project.Models.Classes.Contact
+
+@{
+    ViewBag.Title = "Bize Ulaşın";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<!-- Breadcrumbs -->
+<section class="breadcrumbs-custom-insert">
+    <div class="breadcrumbs-custom context-dark" style="background-color: #1A2B4C; padding: 40px 0; min-height: auto;">
+        <div class="container">
+            <h2 class="breadcrumbs-custom-title" style="color: white; text-transform: none;">İletişim</h2>
+            <ul class="breadcrumbs-custom-path" style="color: rgba(255,255,255,0.7); margin-top: 15px;">
+                <li><a href="/Default/Home/" style="color: rgba(255,255,255,0.7);">Ana Sayfa</a></li>
+                <li class="active" style="color: white;">İletişim</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="section section-md bg-default" style="padding: 60px 0;">
+    <div class="container">
+        <div class="row row-50 justify-content-md-center justify-content-lg-start justify-content-xl-between">
+
+            <!-- Contact Information -->
+            <div class="col-lg-5 col-xl-4">
+                <div class="inset-xl-right-40 text-left">
+                    <h3 class="text-spacing-50" style="margin-bottom: 30px; font-weight: 700;">Bize Ulaşın</h3>
+                    <p style="margin-bottom: 40px; color: #5a6d90;">Sorularınız, önerileriniz veya işbirlikleri için iletişim kanallarımızdan bize ulaşabilirsiniz. Seyahat planlarınızda size yardımcı olmaktan mutluluk duyarız.</p>
+
+                    <ul class="list-xl box-typography" style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 20px;">
+                            <div class="unit flex-row unit-spacing-md align-items-center">
+                                <div class="unit-left" style="margin-right: 15px;">
+                                    <div class="icon-wrap" style="width: 50px; height: 50px; background-color: #e6f0fb; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                        <span class="icon novi-icon icon-md icon-primary mdi mdi-phone" style="font-size: 24px; color: #1A2B4C;"></span>
+                                    </div>
+                                </div>
+                                <div class="unit-body">
+                                    <h5 style="margin: 0; font-size: 16px; font-weight: bold;">Telefon</h5>
+                                    <a href="tel:#" style="color: #425780; text-decoration: none;">+90 (555) 123 45 67</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 20px;">
+                            <div class="unit flex-row unit-spacing-md align-items-center">
+                                <div class="unit-left" style="margin-right: 15px;">
+                                    <div class="icon-wrap" style="width: 50px; height: 50px; background-color: #e6f0fb; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                        <span class="icon novi-icon icon-md icon-primary mdi mdi-email-outline" style="font-size: 24px; color: #1A2B4C;"></span>
+                                    </div>
+                                </div>
+                                <div class="unit-body">
+                                    <h5 style="margin: 0; font-size: 16px; font-weight: bold;">E-Posta</h5>
+                                    <a href="mailto:#" style="color: #425780; text-decoration: none;">info@traveltrip.com</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li style="margin-bottom: 20px;">
+                            <div class="unit flex-row unit-spacing-md align-items-center">
+                                <div class="unit-left" style="margin-right: 15px;">
+                                    <div class="icon-wrap" style="width: 50px; height: 50px; background-color: #e6f0fb; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                        <span class="icon novi-icon icon-md icon-primary mdi mdi-map-marker" style="font-size: 24px; color: #1A2B4C;"></span>
+                                    </div>
+                                </div>
+                                <div class="unit-body">
+                                    <h5 style="margin: 0; font-size: 16px; font-weight: bold;">Adres</h5>
+                                    <span style="color: #425780;">Kadıköy, İstanbul, Türkiye</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="col-lg-7 col-xl-7 text-left">
+                <div class="contact-form-wrap" style="background: #fff; padding: 40px; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                    <h3 style="margin-bottom: 30px; font-weight: 700;">Mesaj Gönderin</h3>
+
+                    @using (Html.BeginForm("SendMessage", "Contact", FormMethod.Post, new { @class = "custom-form" }))
+                    {
+                        <div class="row row-20 gutters-20" style="margin-bottom: 20px;">
+                            <div class="col-md-6" style="margin-bottom: 20px;">
+                                <div class="form-group">
+                                    <label for="FullName" style="font-weight: 600; margin-bottom: 8px; display: block;">Adınız Soyadınız</label>
+                                    @Html.TextBoxFor(x => x.FullName, new { @class = "form-control", placeholder = "Adınız ve Soyadınız", required = "required", style = "padding: 12px 20px; border-radius: 5px; border: 1px solid #c8d8f0; width: 100%; box-sizing: border-box;" })
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="margin-bottom: 20px;">
+                                <div class="form-group">
+                                    <label for="Mail" style="font-weight: 600; margin-bottom: 8px; display: block;">E-Posta Adresiniz</label>
+                                    @Html.TextBoxFor(x => x.Mail, new { @class = "form-control", type = "email", placeholder = "ornek@mail.com", required = "required", style = "padding: 12px 20px; border-radius: 5px; border: 1px solid #c8d8f0; width: 100%; box-sizing: border-box;" })
+                                </div>
+                            </div>
+                            <div class="col-12" style="margin-bottom: 20px;">
+                                <div class="form-group">
+                                    <label for="Topic" style="font-weight: 600; margin-bottom: 8px; display: block;">Konu</label>
+                                    @Html.TextBoxFor(x => x.Topic, new { @class = "form-control", placeholder = "Mesajınızın konusu nedir?", required = "required", style = "padding: 12px 20px; border-radius: 5px; border: 1px solid #c8d8f0; width: 100%; box-sizing: border-box;" })
+                                </div>
+                            </div>
+                            <div class="col-12" style="margin-bottom: 30px;">
+                                <div class="form-group">
+                                    <label for="Message" style="font-weight: 600; margin-bottom: 8px; display: block;">Mesajınız</label>
+                                    @Html.TextAreaFor(x => x.Message, new { @class = "form-control", placeholder = "Mesajınızı buraya yazabilirsiniz...", rows = "5", required = "required", style = "padding: 12px 20px; border-radius: 5px; border: 1px solid #c8d8f0; width: 100%; box-sizing: border-box; resize: vertical;" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="background-color: #1A2B4C; border-color: #1A2B4C; padding: 12px 30px; font-weight: bold; border-radius: 5px; transition: all 0.3s ease; cursor: pointer; color: white;">Mesajı Gönder</button>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Map Section (Optional visual addition) -->
+<section class="section">
+    <div style="width: 100%; height: 400px; background-color: #eee;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d192697.793275037!2d28.87175402008971!3d41.00549580931505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa7040068086b%3A0xe1ccfe98bc01b0d0!2zxLBzdGFuYnVs!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</section>
+
+<!-- SweetAlert ile Popup Bildirimi -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                title: 'Başarılı!',
+                text: '@Html.Raw(TempData["SuccessMessage"])',
+                icon: 'success',
+                confirmButtonText: 'Tamam',
+                confirmButtonColor: '#1A2B4C'
+            });
+        });
+    </script>
+}

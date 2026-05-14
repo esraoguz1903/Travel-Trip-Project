@@ -1,0 +1,94 @@
+@using Travel_Trip_Project.Models.Classes
+@model List<Blog>
+@{
+    ViewBag.Title = "Blog Yönetimi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+    .table-modern {
+        vertical-align: middle;
+    }
+    .table-modern thead th {
+        background: #f8fafc;
+        color: #64748b;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        border-bottom: 2px solid #e2e8f0;
+        padding: 15px;
+    }
+    .table-modern tbody td {
+        padding: 15px;
+        border-bottom: 1px solid #f1f5f9;
+        color: #334155;
+        font-weight: 500;
+    }
+    .blog-img-thumb {
+        width: 60px; height: 60px;
+        border-radius: 12px; object-fit: cover;
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold" style="color: #1A2B4C;"><i class="fas fa-pen-nib me-2"></i> Blog Yazıları</h4>
+    <a href="/Admin/AddBlog/" class="btn btn-primary" style="border-radius: 12px; padding: 10px 20px; font-weight: 600; background: #1A2B4C; border: none;">
+        <i class="fas fa-plus me-2"></i> Yeni Blog Ekle
+    </a>
+</div>
+
+<div class="glass-card p-4">
+    <div class="table-responsive">
+        <table class="table table-borderless table-modern mb-0">
+            <thead>
+                <tr>
+                    <th>Görsel</th>
+                    <th>Başlık</th>
+                    <th>Tarih</th>
+                    <th class="text-end">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(Model != null && Model.Any())
+                {
+                    foreach(var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@item.BlogImage" class="blog-img-thumb" alt="@item.Title" onerror="this.src='https://via.placeholder.com/60x60?text=No+Image'"/>
+                            </td>
+                            <td>
+                                <div class="fw-bold" style="font-size: 1.05rem;">@item.Title</div>
+                                <div class="text-muted" style="font-size: 0.85rem;">@(item.Description != null && item.Description.Length > 50 ? item.Description.Substring(0,50) + "..." : item.Description)</div>
+                            </td>
+                            <td>
+                                <span class="badge bg-light text-dark px-3 py-2" style="border-radius: 8px;">@item.BlogDate.ToString("dd.MM.yyyy")</span>
+                            </td>
+                            <td class="text-end">
+                                <a href="/Admin/GetBlog/@item.Id" class="btn btn-sm btn-info text-white me-2" style="border-radius: 8px; padding: 8px 15px;"><i class="fas fa-edit"></i> Güncelle</a>
+                                <a href="/Admin/DeleteBlog/@item.Id" class="btn btn-sm btn-danger" style="border-radius: 8px; padding: 8px 15px;" onclick="return confirm('Bu blog yazısını silmek istediğinize emin misiniz?');"><i class="fas fa-trash-alt"></i> Sil</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center py-5 text-muted">
+                            <i class="fas fa-folder-open mb-3" style="font-size: 3rem; opacity: 0.2;"></i>
+                            <h5>Henüz blog yazısı eklenmemiş</h5>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

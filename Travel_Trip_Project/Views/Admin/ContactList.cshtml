@@ -1,0 +1,114 @@
+@using Travel_Trip_Project.Models.Classes
+@model List<Contact>
+@{
+    ViewBag.Title = "Gelen Mesajlar";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    }
+    .table-modern {
+        vertical-align: middle;
+    }
+    .table-modern thead th {
+        background: #f8fafc;
+        color: #64748b;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        border-bottom: 2px solid #e2e8f0;
+        padding: 15px;
+    }
+    .table-modern tbody td {
+        padding: 15px;
+        border-bottom: 1px solid #f1f5f9;
+        color: #334155;
+        font-weight: 500;
+    }
+    .avatar-circle {
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, #1A2B4C, #2196F3);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .message-row {
+        transition: background 0.2s;
+    }
+    .message-row:hover {
+        background: #f8fafc !important;
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold" style="color: #1A2B4C;"><i class="fas fa-envelope-open-text me-2"></i> Gelen Mesajlar (Inbox)</h4>
+    <span class="badge bg-primary px-3 py-2" style="border-radius: 8px; font-size: 0.9rem;">Toplam: @(Model != null ? Model.Count() : 0)</span>
+</div>
+
+<div class="glass-card p-4">
+    <div class="table-responsive">
+        <table class="table table-borderless table-modern mb-0">
+            <thead>
+                <tr>
+                    <th>Gönderen</th>
+                    <th>Konu</th>
+                    <th>Mesaj Özeti</th>
+                    <th class="text-end">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(Model != null && Model.Any())
+                {
+                    foreach(var item in Model)
+                    {
+                        var firstLetter = !string.IsNullOrEmpty(item.FullName) ? item.FullName.Substring(0, 1).ToUpper() : "?";
+                        <tr class="message-row">
+                            <td>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="avatar-circle shadow-sm">@firstLetter</div>
+                                    <div>
+                                        <div class="fw-bold text-dark" style="font-size: 1.05rem;">@item.FullName</div>
+                                        <div class="text-muted" style="font-size: 0.85rem;"><i class="fas fa-at me-1"></i> @item.Mail</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="badge bg-light text-dark px-3 py-2" style="border-radius: 8px; border: 1px solid #e2e8f0;">@item.Topic</span>
+                            </td>
+                            <td>
+                                <div class="text-muted" style="max-width: 300px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    @(item.Message != null && item.Message.Length > 40 ? item.Message.Substring(0,40) + "..." : item.Message)
+                                </div>
+                            </td>
+                            <td class="text-end">
+                                <a href="/Admin/MessageDetails/@item.Id" class="btn btn-sm btn-primary text-white me-2" style="border-radius: 8px; padding: 8px 15px;"><i class="fas fa-book-open"></i> Oku</a>
+                                <a href="/Admin/DeleteContact/@item.Id" class="btn btn-sm btn-danger" style="border-radius: 8px; padding: 8px 15px;" onclick="return confirm('Bu mesajı silmek istediğinize emin misiniz?');"><i class="fas fa-trash-alt"></i> Sil</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center py-5 text-muted">
+                            <i class="fas fa-inbox mb-3" style="font-size: 3rem; opacity: 0.2;"></i>
+                            <h5>Gelen kutusu boş</h5>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

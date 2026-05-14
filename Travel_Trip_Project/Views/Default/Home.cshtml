@@ -1,0 +1,81 @@
+@using Travel_Trip_Project.Models.Classes
+@model List<Blog>
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+
+<section class="section">
+    <div class="swiper-form-wrap">
+        <!-- Swiper-->
+        <div class="swiper-container swiper-slider swiper-slider_height-1 swiper-align-left swiper-align-left-custom context-dark bg-gray-darker" data-loop="false" data-autoplay="5500" data-simulate-touch="false" data-slide-effect="fade">
+            <div class="swiper-wrapper">
+                @foreach (var x in Model.Take(3))
+                {
+                    <div class="swiper-slide" data-slide-bg=@x.BlogImage>
+                        <div class="swiper-slide-caption">
+                            <div class="container container-bigger swiper-main-section">
+                                <div class="row row-fix justify-content-sm-center justify-content-md-start"></div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- Swiper controls-->
+            <div class="swiper-pagination-wrap">
+                <div class="container container-bigger">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="section section-lg bg-default text-center">
+    <div class="container">
+        <h2 class="heading-2 mb-4" style="color: #1A2B4C;">Tatil Seyahat Bloğuma Hoşgeldiniz</h2>
+        <p style="font-size: 1.15rem; line-height: 1.9; color: #555; max-width: 900px; margin: 0 auto;">
+            Dünyanın dört bir yanındaki gizli kalmış köşeleri, büyüleyici manzaraları ve unutulmaz anıları keşfetmek için en doğru yerdesiniz!
+            Bu blogda; kimi zaman kalabalık bir şehrin tarihi sokaklarında kaybolacak, kimi zaman doğanın kalbinde huzur bulacağımız rotaları
+            hep birlikte çizeceğiz. Sadece gidilecek yerleri değil, oralarda yaşanacak duyguları, tadılacak yöresel lezzetleri ve hayat kurtaran
+            seyahat ipuçlarını da sizlerle paylaşıyorum. Şehrin gürültüsünden uzaklaşıp yeni kültürler tanımaya hazırsanız sırt çantanızı hazırlayın;
+            çünkü yepyeni maceralara ve keşfedilmeyi bekleyen eşsiz hikayelere doğru yola çıkıyoruz!
+        </p>
+    </div>
+</section>
+
+<section class="section section-variant-1 bg-default novi-background bg-cover" style="padding-top: 0;">
+    <div class="container container-wide">
+        <div class="row row-fix justify-content-center row-30 text-center mb-5">
+            <div class="col-12">
+                <h3 style="color: #1A2B4C;">My Best Tours</h3>
+            </div>
+        </div>
+        <div class="row row-50">
+            @foreach (var x in Model.OrderByDescending(x => x.Id).Take(3).ToList())
+            {
+                <div class="col-md-6 col-xl-4">
+                    <article class="event-default-wrap">
+                        <div class="event-default">
+                            <figure class="event-default-image">
+                                <img src=@x.BlogImage alt="" width="570" height="370" />
+                            </figure>
+                        </div>
+                        <div class="event-default-inner">
+                            @*<h5><a class="event-default-title" href="#">France, Paris</a></h5>*@
+                        </div>
+                    </article>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@Html.Action("Partial1", "Default")

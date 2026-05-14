@@ -1,0 +1,188 @@
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 24px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+    }
+    .hero-card {
+        background: linear-gradient(120deg, #1A2B4C 0%, #3a5c9e 100%);
+        border-radius: 28px;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        border: none;
+        box-shadow: 0 20px 40px rgba(26, 43, 76, 0.2);
+    }
+    .hero-card::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+        border-radius: 50%;
+    }
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 18px;
+        font-size: 1.8rem;
+    }
+    .action-btn {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 16px 20px;
+        font-weight: 600;
+        color: #2b3648;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+    }
+    .action-btn:hover {
+        background: #f8fafc;
+        border-color: #cbd5e1;
+        transform: scale(1.02);
+    }
+    .action-btn i {
+        background: #f0f4f8;
+        width: 40px; height: 40px;
+        display: flex; align-items: center; justify-content: center;
+        border-radius: 12px;
+        margin-right: 15px;
+    }
+</style>
+
+<div class="row g-4">
+    <!-- Hero Card -->
+    <div class="col-12 mb-2">
+        <div class="hero-card p-4 p-lg-5">
+            <div class="row align-items-center position-relative" style="z-index: 1;">
+                <div class="col-lg-8">
+                    <span class="badge bg-white text-dark mb-3 px-3 py-2" style="border-radius: 10px; font-weight: 700; letter-spacing: 1px;">PANEL 1.0</span>
+                    <h1 class="fw-bolder mb-3" style="font-size: 2.8rem; letter-spacing: -1px;">Projeye Hakim Olun.</h1>
+                    <p class="mb-0" style="font-size: 1.15rem; opacity: 0.85; max-width: 600px; font-weight: 300;">Blog yazılarınızı güncelleyin, yeni seyahat rotaları ekleyin ve size ulaşan mesajları tek bir modern arayüzden yönetin.</p>
+                </div>
+                <div class="col-lg-4 text-end d-none d-lg-block">
+                    <i class="fas fa-compass fa-spin-pulse" style="font-size: 8rem; opacity: 0.1; --fa-animation-duration: 15s;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="col-md-4">
+        <div class="glass-card p-4 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <p class="text-muted fw-bold mb-1" style="font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;">Toplam Blog</p>
+                    <h2 class="fw-black mb-0" style="font-size: 2.5rem; color: #1A2B4C; font-weight: 800;">@ViewBag.BlogCount</h2>
+                </div>
+                <div class="stat-icon" style="background: rgba(33, 150, 243, 0.1); color: #2196F3;">
+                    <i class="fas fa-pen-fancy"></i>
+                </div>
+            </div>
+            <div class="progress" style="height: 6px; border-radius: 10px; background-color: #e2e8f0;">
+                <div class="progress-bar" style="width: 70%; background-color: #2196F3; border-radius: 10px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="glass-card p-4 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <p class="text-muted fw-bold mb-1" style="font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;">Rotalar</p>
+                    <h2 class="fw-black mb-0" style="font-size: 2.5rem; color: #1A2B4C; font-weight: 800;">@ViewBag.DestinationCount</h2>
+                </div>
+                <div class="stat-icon" style="background: rgba(76, 175, 80, 0.1); color: #4CAF50;">
+                    <i class="fas fa-map-location-dot"></i>
+                </div>
+            </div>
+            <div class="progress" style="height: 6px; border-radius: 10px; background-color: #e2e8f0;">
+                <div class="progress-bar" style="width: 45%; background-color: #4CAF50; border-radius: 10px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="glass-card p-4 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <p class="text-muted fw-bold mb-1" style="font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;">Gelen Mesajlar</p>
+                    <h2 class="fw-black mb-0" style="font-size: 2.5rem; color: #1A2B4C; font-weight: 800;">@ViewBag.ContactCount</h2>
+                </div>
+                <div class="stat-icon" style="background: rgba(255, 152, 0, 0.1); color: #FF9800;">
+                    <i class="fas fa-envelope-open-text"></i>
+                </div>
+            </div>
+            <div class="progress" style="height: 6px; border-radius: 10px; background-color: #e2e8f0;">
+                <div class="progress-bar" style="width: 85%; background-color: #FF9800; border-radius: 10px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="col-12 mt-4">
+        <h5 class="fw-bold mb-4" style="color: #1A2B4C; padding-left: 10px;">Hızlı İçerik Üretimi</h5>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <a href="/Admin/AddBlog" class="action-btn w-100 text-start border-0 shadow-sm text-decoration-none">
+                    <i class="fas fa-plus text-primary fs-5"></i>
+                    <div>
+                        <div class="fw-bold text-dark">Yeni Blog Yazısı Oluştur</div>
+                        <div class="text-muted fw-normal" style="font-size: 0.85rem;">Seyahat deneyimlerinizi anında paylaşın.</div>
+                    </div>
+                    <i class="fas fa-chevron-right ms-auto text-muted opacity-50"></i>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="/Admin/AddDestination" class="action-btn w-100 text-start border-0 shadow-sm text-decoration-none">
+                    <i class="fas fa-map-pin text-success fs-5"></i>
+                    <div>
+                        <div class="fw-bold text-dark">Yeni Rota / Destinasyon Ekle</div>
+                        <div class="text-muted fw-normal" style="font-size: 0.85rem;">Rehber kısmında sergilenecek yeni bir yer ekleyin.</div>
+                    </div>
+                    <i class="fas fa-chevron-right ms-auto text-muted opacity-50"></i>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="/Comment/CommentList" class="action-btn w-100 text-start border-0 shadow-sm text-decoration-none">
+                    <i class="fas fa-comments text-warning fs-5"></i>
+                    <div>
+                        <div class="fw-bold text-dark">Yorumları Yönet</div>
+                        <div class="text-muted fw-normal" style="font-size: 0.85rem;">Blog yazılarına gelen yorumları inceleyin.</div>
+                    </div>
+                    <i class="fas fa-chevron-right ms-auto text-muted opacity-50"></i>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="/Admin/ContactList" class="action-btn w-100 text-start border-0 shadow-sm text-decoration-none">
+                    <i class="fas fa-envelope text-danger fs-5"></i>
+                    <div>
+                        <div class="fw-bold text-dark">Gelen Mesajlar</div>
+                        <div class="text-muted fw-normal" style="font-size: 0.85rem;">Kullanıcılardan gelen iletişim mesajları.</div>
+                    </div>
+                    <i class="fas fa-chevron-right ms-auto text-muted opacity-50"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
