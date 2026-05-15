@@ -14,6 +14,7 @@ namespace Travel_Trip_Project.Controllers
 
         // ================= 1. DASHBOARD =================
         [HttpGet]
+        [Authorize]
         public ActionResult AdminHome()
         {
             ViewBag.BlogCount = c.Blogs.Count();

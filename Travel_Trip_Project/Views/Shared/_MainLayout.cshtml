@@ -89,23 +89,27 @@
                             <!-- RD Navbar Toggle-->
                             <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                             <!-- RD Navbar Brand-->
-                            <div class="rd-navbar-brand"><a class="brand-name" href="index.html"><img class="logo-default" src="~/site/images/logo-default-208x46.png" alt="" width="208" height="46" /><img class="logo-inverse" src="~/site/images/logo-inverse-208x46.png" alt="" width="208" height="46" /></a></div>
+                            <div class="rd-navbar-brand">
+                                <a class="brand-name" href="/Default/Home/" style="text-decoration:none;">
+                                    <img src="~/site/myImage/logo-Photoroom.png" alt="Mavi Pusula" style="height:80px; width:auto; object-fit:contain;" />
+                                </a>
+                            </div>
                         </div>
                         <div class="rd-navbar-aside-center">
                             <div class="rd-navbar-nav-wrap">
                                 <!-- RD Navbar Nav-->
                                 <ul class="rd-navbar-nav" style="text-align:center">
-                                    <li class="active">
-                                        <a href="/Default/Home/">Ana Sayfa</a>
-                                    </li>
-                                    <li>
-                                        <a href="/About/AboutPage/ ">Hakkımızda</a>
-                                    </li>                                    <li>
-                                        <a href="/Blog/MyBlog/ ">Bloglarım</a>
-                                    </li>
-                                    <li>
-                                        <a href="/Contact/ContactPages">İletişim</a>
-                                    </li>
+                                    @{
+                                        var currentUrl = Request.Url.AbsolutePath.ToLower();
+                                        bool isHome    = currentUrl == "/" || currentUrl.Contains("/default/home");
+                                        bool isAbout   = currentUrl.Contains("/about/");
+                                        bool isBlog    = currentUrl.Contains("/blog/");
+                                        bool isContact = currentUrl.Contains("/contact/");
+                                    }
+                                    <li class="@(isHome ? "active" : "")"><a href="/Default/Home/">Ana Sayfa</a></li>
+                                    <li class="@(isAbout ? "active" : "")"><a href="/About/AboutPage/">Hakkımızda</a></li>
+                                    <li class="@(isBlog ? "active" : "")"><a href="/Blog/MyBlog/">Bloglarım</a></li>
+                                    <li class="@(isContact ? "active" : "")"><a href="/Contact/ContactPages">İletişim</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -125,7 +129,9 @@
                 <div class="row justify-content-sm-center align-items-md-center" style="margin: 0;">
                     <!-- Logo Kısmı -->
                     <div class="col-md-10 col-lg-7 col-xl-4 text-xl-left mb-3 mb-xl-0">
-                        <a href="index.html"><img class="inverse-logo" src="~/site/images/logo-inverse-208x46.png" alt="" width="208" height="46" /></a>
+                        <a href="/Default/Home/" style="text-decoration:none;">
+                            <img src="~/site/myImage/logo-Photoroom.png" alt="Mavi Pusula" style="height:70px; width:auto; object-fit:contain;" />
+                        </a>
                     </div>
                     
                     <!-- Telif Hakkı ve Yazı Kısmı -->

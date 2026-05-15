@@ -1,0 +1,194 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Giriş</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="//fonts.googleapis.com/css?family=Cormorant+SC:300,400,500,600,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Open Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+            /* Dark overlay */
+            body::before {
+                content: '';
+                position: fixed;
+                inset: 0;
+                background: rgba(5, 15, 35, 0.58);
+                z-index: 0;
+            }
+
+        /* Wrapper */
+        .padding-all {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* Title */
+        .header h1 {
+            font-family: 'Cormorant SC', serif;
+            font-weight: 500;
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 50px;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+        }
+
+        /* Form container */
+        .design-w3l {
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .mail-form-agile {
+            width: 100%;
+        }
+
+            .mail-form-agile form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+            }
+
+            /* Text / Password inputs — underline style */
+            .mail-form-agile input[type="text"],
+            .mail-form-agile input[type="password"] {
+                width: 100%;
+                background: transparent;
+                border: none;
+                border-bottom: 1.5px solid rgba(255,255,255,0.55);
+                color: #ffffff;
+                font-family: 'Open Sans', sans-serif;
+                font-size: 0.95rem;
+                font-weight: 300;
+                padding: 14px 10px 14px 32px;
+                margin-bottom: 28px;
+                outline: none;
+                transition: border-color 0.3s;
+                letter-spacing: 0.5px;
+            }
+
+                .mail-form-agile input[type="text"]::placeholder,
+                .mail-form-agile input[type="password"]::placeholder {
+                    color: rgba(255,255,255,0.65);
+                    font-weight: 300;
+                }
+
+                .mail-form-agile input[type="text"]:focus,
+                .mail-form-agile input[type="password"]:focus {
+                    border-bottom-color: #00aaff;
+                }
+
+        /* User icon before text input */
+        .input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+            .input-wrapper .icon {
+                position: absolute;
+                left: 6px;
+                top: 50%;
+                transform: translateY(-60%);
+                color: rgba(255,255,255,0.55);
+                font-size: 0.85rem;
+            }
+
+        /* Submit button */
+        .mail-form-agile input[type="submit"] {
+            margin-top: 10px;
+            background: #00aaff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            padding: 10px 40px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+            .mail-form-agile input[type="submit"]:hover {
+                background: #0090dd;
+                transform: translateY(-1px);
+            }
+
+        /* Footer */
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+            .footer p {
+                color: rgba(255,255,255,0.45);
+                font-size: 0.78rem;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                font-family: 'Cormorant SC', serif;
+            }
+
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="padding-all">
+        <div class="header">
+            <h1>Tatil Seyahat Blogu Giriş Formu</h1>
+        </div>
+
+        <div class="design-w3l">
+            <div class="mail-form-agile">
+                @using (Html.BeginForm("Login", "AdminLogin", FormMethod.Post))
+                {
+                <div class="input-wrapper">
+                    <span class="icon">&#9993;</span>
+                    <input type="text" name="User" placeholder="Kullanıcı Adınız..." required="" />
+                </div>
+                <div class="input-wrapper">
+                    <span class="icon">&#128274;</span>
+                    <input type="password" name="Password" class="padding" placeholder="Şifreniz..." required="" />
+                </div>
+                <input type="submit" value="Giriş Yap">
+                }
+            </div>
+            <div class="clear"> </div>
+        </div>
+
+        <div class="footer">
+            <p>© Esra Oğuz Taraından Yapılmıştır</p>
+        </div>
+    </div>
+</body>
+</html>

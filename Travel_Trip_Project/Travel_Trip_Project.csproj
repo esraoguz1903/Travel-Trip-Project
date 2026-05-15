@@ -129,6 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminLoginController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -270,7 +271,7 @@
     <Content Include="site\myImage\altintapinak.jpg" />
     <Content Include="site\myImage\astaraazerbaycan.jpg" />
     <Content Include="site\myImage\baku.jpg" />
-    <Content Include="site\myImage\bakuButikOtel.jpg" />
+    <Content Include="site\myImage\bakuButik.jpg" />
     <Content Include="site\myImage\buyukkanalvenedik.jpg" />
     <Content Include="site\myImage\eskiLiman.jpg" />
     <Content Include="site\myImage\eyfel.jpg" />
@@ -279,9 +280,10 @@
     <Content Include="site\myImage\kaleici.jpg" />
     <Content Include="site\myImage\kapadokya.jpg" />
     <Content Include="site\myImage\kazakistanalmati.jpg" />
-    <Content Include="site\myImage\kirgizmutfagi.jpg" />
+    <Content Include="site\myImage\kirgizMutfagi.jpg" />
     <Content Include="site\myImage\kolezyum.jpg" />
-    <Content Include="site\myImage\semerkant.jpg" />
+    <Content Include="site\myImage\logo-Photoroom.png" />
+    <Content Include="site\myImage\semerkand.jpg" />
     <Content Include="site\myImage\shibuya.jpg" />
     <Content Include="site\myImage\travelwallpaper.jpg" />
     <Content Include="site\typography.html" />
@@ -304,6 +306,10 @@
     <Content Include="web2\js\move-top.js" />
     <Content Include="web2\single.html" />
     <Content Include="web2\w3layouts-License.txt" />
+    <Content Include="weblogin\css\style.css" />
+    <Content Include="weblogin\images\b4.jpg" />
+    <Content Include="weblogin\index.html" />
+    <Content Include="weblogin\w3layouts-License.txt" />
     <Content Include="web\about.html" />
     <Content Include="web\contact.html" />
     <Content Include="web\css\slider.css" />
@@ -435,6 +441,9 @@
     <Content Include="Views\Comment\CommentList.cshtml" />
     <Content Include="Views\Comment\CommentsByBlog.cshtml" />
     <Content Include="Views\Comment\CommentDetails.cshtml" />
+    <Content Include="weblogin\fonts\Asap-Regular.ttf" />
+    <Content Include="weblogin\fonts\Audiowide-Regular.ttf" />
+    <Content Include="Views\AdminLogin\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
