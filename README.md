@@ -238,14 +238,71 @@ URL: /AdminLogin/Login
 
 ## 📸 Ekran Görüntüleri
 
-> *(Projenizin ekran görüntülerini buraya ekleyebilirsiniz)*
+### 🔐 Giriş Ekranı
 
-| Sayfa | Açıklama |
-|---|---|
-| Ana Sayfa | Dinamik hero ve destinasyon bölümleri |
-| Admin Dashboard | İstatistik kartları ve hızlı erişim menüsü |
-| Destinasyon Listesi | Top 10 ve En İyi Yer yönetimi |
-| Blog Yönetimi | CRUD işlemleri |
+<img src="Travel_Trip_Project/screenshots/Login.jpg" width="70%" alt="Login" />
+
+---
+
+### 🌐 Kullanıcı Sayfaları
+
+<table>
+  <tr>
+    <td align="center"><b>Ana Sayfa - 1</b></td>
+    <td align="center"><b>Ana Sayfa - 2</b></td>
+  </tr>
+  <tr>
+    <td><img src="Travel_Trip_Project/screenshots/Anasayfa1.jpg" width="100%" alt="Ana Sayfa 1" /></td>
+    <td><img src="Travel_Trip_Project/screenshots/Anasayfa2.jpg" width="100%" alt="Ana Sayfa 2" /></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Ana Sayfa - 3</b></td>
+    <td align="center"><b>Hakkımızda</b></td>
+  </tr>
+  <tr>
+    <td><img src="Travel_Trip_Project/screenshots/Anasayfa3.jpg" width="100%" alt="Ana Sayfa 3" /></td>
+    <td><img src="Travel_Trip_Project/screenshots/Hakkimizda.jpg" width="100%" alt="Hakkımızda" /></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Bloglarım</b></td>
+    <td align="center"><b>Blog Detay</b></td>
+  </tr>
+  <tr>
+    <td><img src="Travel_Trip_Project/screenshots/Bloglarim.jpg" width="100%" alt="Bloglarım" /></td>
+    <td><img src="Travel_Trip_Project/screenshots/BlogDetay.jpg" width="100%" alt="Blog Detay" /></td>
+  </tr>
+  <tr>
+    <td align="center"><b>İletişim</b></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><img src="Travel_Trip_Project/screenshots/iletisim.jpg" width="100%" alt="İletişim" /></td>
+    <td></td>
+  </tr>
+</table>
+
+---
+
+### 🔐 Admin Paneli
+
+<table>
+  <tr>
+    <td align="center"><b>Dashboard</b></td>
+    <td align="center"><b>Blog Yönetimi</b></td>
+  </tr>
+  <tr>
+    <td><img src="Travel_Trip_Project/screenshots/APDashboard.jpg" width="100%" alt="Admin Dashboard" /></td>
+    <td><img src="Travel_Trip_Project/screenshots/ApBlogYonetimi.jpg" width="100%" alt="Blog Yönetimi" /></td>
+  </tr>
+  <tr>
+    <td align="center"><b>İletişim Yönetimi</b></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><img src="Travel_Trip_Project/screenshots/APIletisim.jpg" width="100%" alt="Admin İletişim" /></td>
+    <td></td>
+  </tr>
+</table>
 
 ---
 
