@@ -109,34 +109,112 @@ Travel_Trip_Project/
 
 ## ⚙️ Kurulum ve Çalıştırma
 
-### Gereksinimler
-- Visual Studio 2019 veya üzeri
-- .NET Framework 4.7.2+
-- SQL Server (LocalDB veya Express)
+### ✅ Gereksinimler
 
-### Adımlar
+Başlamadan önce aşağıdakilerin bilgisayarınızda kurulu olduğundan emin olun:
 
-**1. Repoyu klonlayın:**
+| Gereksinim | Versiyon | İndirme |
+|---|---|---|
+| **Visual Studio** | 2019 veya üzeri | [visualstudio.microsoft.com](https://visualstudio.microsoft.com/) |
+| **.NET Framework** | 4.7.2+ | Visual Studio ile birlikte gelir |
+| **SQL Server** | Express veya LocalDB | [SQL Server Express](https://www.microsoft.com/tr-tr/sql-server/sql-server-downloads) |
+| **SQL Server Management Studio** | Herhangi bir sürüm (opsiyonel) | [SSMS İndir](https://learn.microsoft.com/tr-tr/sql/ssms/download-sql-server-management-studio-ssms) |
+
+> ⚠️ Visual Studio kurulumunda **"ASP.NET and web development"** iş yükünün seçili olduğundan emin olun.
+
+---
+
+### 🔧 Kurulum Adımları
+
+#### 1. Repoyu klonlayın
+
 ```bash
 git clone https://github.com/kullanici-adi/Travel_Trip_Project.git
 ```
 
-**2. Visual Studio'da açın:**
-```
-Travel_Trip_Project.sln dosyasını açın
+#### 2. Çözümü Visual Studio'da açın
+
+`Travel_Trip_Project.sln` dosyasına çift tıklayın veya Visual Studio'dan **File → Open → Project/Solution** ile açın.
+
+---
+
+#### 3. ⚠️ Bağlantı Dizesini (Connection String) Güncelleyin
+
+> **Bu adım atlanırsa uygulama veritabanına bağlanamaz!**
+
+`Travel_Trip_Project/Web.config` dosyasını açın ve şu satırı bulun:
+
+```xml
+<add name="Context"
+     connectionString="Data Source=DESKTOP-RIL0VMV\SQLEXPRESS;Initial Catalog=TravelTripDb;Integrated Security=TRUE;TrustServerCertificate=True"
+     providerName="System.Data.SqlClient" />
 ```
 
-**3. Veritabanını oluşturun:**
+`Data Source` kısmını **kendi SQL Server örnek adınızla** değiştirin:
 
-`Package Manager Console`'u açın ve şu komutları çalıştırın:
+```xml
+<!-- SQL Server Express kullanıyorsanız: -->
+Data Source=.\SQLEXPRESS
+
+<!-- SQL Server LocalDB kullanıyorsanız: -->
+Data Source=(LocalDB)\MSSQLLocalDB
+
+<!-- Kendi bilgisayar adınızı öğrenmek için PowerShell'de çalıştırın: -->
+<!-- $env:COMPUTERNAME + "\SQLEXPRESS" -->
+```
+
+Örnek güncellenmiş satır:
+```xml
+<add name="Context"
+     connectionString="Data Source=.\SQLEXPRESS;Initial Catalog=TravelTripDb;Integrated Security=TRUE;TrustServerCertificate=True"
+     providerName="System.Data.SqlClient" />
+```
+
+---
+
+#### 4. NuGet Paketlerini Geri Yükleyin
+
+Solution Explorer'da projeye sağ tıklayın → **"Restore NuGet Packages"** seçin.
+
+Ya da menüden: **Tools → NuGet Package Manager → Package Manager Console** açıp şunu çalıştırın:
+
+```powershell
+Update-Package -reinstall
+```
+
+> 💡 Paketler otomatik restore olmazsa bu adım gereklidir. Projedeki paketler: Entity Framework 6.5.2, Bootstrap 5.2.3, jQuery 3.7.0
+
+---
+
+#### 5. Veritabanını Oluşturun (Migration)
+
+**Tools → NuGet Package Manager → Package Manager Console** açın.
+
+Default project olarak `Travel_Trip_Project` seçili olduğundan emin olun, ardından:
+
 ```powershell
 Update-Database
 ```
 
-**4. Uygulamayı çalıştırın:**
+Bu komut:
+- `TravelTripDb` adında yeni bir veritabanı oluşturur
+- Migration dosyalarını çalıştırarak tüm tabloları oluşturur
+- Başarılı olursa `Applying migration '..._UpdateColumn'` mesajını görürsünüz
+
+> ❌ **Hata alırsanız:**
+> - Connection string'i kontrol edin (3. adım)
+> - SQL Server servisinin çalıştığını kontrol edin: Windows Hizmetleri → `SQL Server (SQLEXPRESS)` → Çalışıyor olmalı
+
+---
+
+#### 6. Uygulamayı Çalıştırın
+
 ```
-F5 veya Ctrl+F5
+F5  →  Debug modunda çalıştırır (hata ayıklama açık)
+Ctrl+F5  →  Debug olmadan çalıştırır (daha hızlı)
 ```
+
+Tarayıcı otomatik açılmazsa: `https://localhost:{port}/` adresine gidin.
 
 ---
 
