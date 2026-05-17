@@ -150,18 +150,24 @@ git clone https://github.com/kullanici-adi/Travel_Trip_Project.git
      providerName="System.Data.SqlClient" />
 ```
 
-`Data Source` kısmını **kendi SQL Server örnek adınızla** değiştirin:
+`Data Source` kısmını kurulumunuza göre aşağıdaki **standart Microsoft varsayılan değerlerinden** biriyle değiştirin:
 
 ```xml
-<!-- SQL Server Express kullanıyorsanız: -->
+<!-- ✅ SQL Server Express default kurulumunda bu isim otomatik oluşur: -->
 Data Source=.\SQLEXPRESS
 
-<!-- SQL Server LocalDB kullanıyorsanız: -->
+<!-- ✅ Visual Studio ile gelen LocalDB'de bu isim otomatik oluşur: -->
 Data Source=(LocalDB)\MSSQLLocalDB
-
-<!-- Kendi bilgisayar adınızı öğrenmek için PowerShell'de çalıştırın: -->
-<!-- $env:COMPUTERNAME + "\SQLEXPRESS" -->
 ```
+
+> 💡 **Not:** `SQLEXPRESS` ve `MSSQLLocalDB` sizin oluşturduğunuz isimler değildir.
+> Bunlar Microsoft tarafından belirlenen **standart instance isimleridir** ve
+> default kurulumda herkes için aynıdır. Hangisini kullandığınızdan emin
+> değilseniz PowerShell'de şunu çalıştırın:
+> ```powershell
+> # Mevcut SQL Server instance'larını listeler
+> Get-Service | Where-Object {$_.Name -like "MSSQL*"}
+> ```
 
 Örnek güncellenmiş satır:
 ```xml
